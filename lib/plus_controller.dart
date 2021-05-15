@@ -15,7 +15,7 @@ class PlusAnimation extends SimpleAnimation {
     //instance!.animation.duration=10;
     //instance!.animation.workStart=0;
 
-    print("pressed start");
+
 
 
 
@@ -30,7 +30,7 @@ class PlusAnimation extends SimpleAnimation {
   }
 
   reverse(){
-    print("pressed reverse");
+
     isActive=true;
 
 
