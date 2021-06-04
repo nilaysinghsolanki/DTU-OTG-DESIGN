@@ -50,7 +50,6 @@ class MyApp extends StatelessWidget {
 
 
 
-
   Artboard _riveArtboard;
   bool _events_pressed=false;
   bool _adding_to_app_pressed = false;
@@ -64,6 +63,10 @@ class MyApp extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             color: newcolor,),
         child: ListTile(
+          leading: CircleAvatar(
+            backgroundColor: Colors.brown,
+
+          ),
           title: Text("log out",style: general_text_style,),
 
 
@@ -131,23 +134,21 @@ class MyApp extends StatelessWidget {
 
 
 
-            child: Flexible(
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: newcolor
-                ),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: newcolor
+              ),
 
 
-                child: Center(
-                  child: ListView(
-                    
-                    
+              child: Center(
+                child: ListView(
 
 
 
-                    children: ScatteredListtiles,
-                  ),
+
+
+                  children: ScatteredListtiles,
                 ),
               ),
             ), // Populate the Drawer in the next step.
@@ -273,23 +274,149 @@ class AddEventsPage extends StatefulWidget {
 }
 
 class _AddEventsPageState extends State<AddEventsPage> {
+  var event_description_channged;
+  var event_name_changed;
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Scaffold(
+    return Scaffold(
+      appBar:AppBar(
         backgroundColor: newcolor,
-        body: Container(
-          color: newcolor,
-          child: Center(
-            child: FloatingActionButton(
-              elevation: 0,
+        iconTheme:IconThemeData(
+            color: Colors.black
+        ),
+      ),
+      backgroundColor: newcolor,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(elevation: 0,
+                color: newcolor,
+                child: TextField(
 
-              backgroundColor: Colors.white,
-              onPressed: (){
-                Navigator.pop(context);
-              },
+
+
+
+
+                    style: TextStyle(
+
+
+                        color: Colors.brown,fontSize: 30
+
+                    ),
+
+
+
+                    cursorColor: Colors.brown,
+                    cursorHeight: 35,
+
+                    decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:  BorderSide(color: Colors.black26,width: 4),
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:  BorderSide(color: Colors.black26,width: 3),
+                          borderRadius: BorderRadius.circular(25.0),
+
+                        ),
+                        labelText: "Name of the event",
+
+                        helperText: 'Keep it short, this is just a beta.',
+                        hintStyle: TextStyle(color: Colors.black26),
+                        labelStyle: TextStyle(
+                            color: Colors.brown,fontSize: 30
+                        ),
+                        hoverColor: Colors.brown,
+                        fillColor: newcolor,
+                        focusColor: Colors.white
+                    ),
+                    onChanged: ( NameOfEvent) {
+                      print("The value entered is : $NameOfEvent");
+                      event_name_changed="$NameOfEvent";
+
+
+
+                    }
+                ),
+              ),
             ),
-          ),
+
+
+
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(elevation: 0,
+                color: newcolor,
+                child: TextField(
+
+
+
+
+
+                    style: TextStyle(
+
+
+                        color: Colors.brown,fontSize: 30
+
+                    ),
+
+
+
+                    cursorColor: Colors.brown,
+                    cursorHeight: 35,
+
+                    decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:  BorderSide(color: Colors.black26,width: 4),
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:  BorderSide(color: Colors.black26,width: 3),
+                          borderRadius: BorderRadius.circular(25.0),
+
+                        ),
+                        labelText: "Description",
+
+                        helperText: 'Keep it short, this is just a beta.',
+                        hintStyle: TextStyle(color: Colors.black26),
+                        labelStyle: TextStyle(
+                            color: Colors.brown,fontSize: 30
+                        ),
+                        hoverColor: Colors.brown,
+                        fillColor: newcolor,
+                        focusColor: Colors.white
+                    ),
+                    onChanged: (DescriptionOfEvent) {
+                      print("The value entered is : $DescriptionOfEvent");
+                      event_description_channged="$DescriptionOfEvent";
+
+
+                    }
+                ),
+              ),
+            ),
+            FloatingActionButton(
+                backgroundColor: Colors.brown,onPressed: (){
+              event_description=event_description_channged;
+              event_name=event_name_changed;
+
+
+              Events.add(Card(
+                child: ListTile(
+                  leading: Icon(FontAwesomeIcons.star,color: Colors.purple,),
+                  title: Text(event_name),
+                  subtitle: Text(event_description),
+                ),
+              ));
+            }),
+          ],
         ),
       ),
     );
@@ -304,27 +431,152 @@ class AddToSchedulePage extends StatefulWidget {
 }
 
 class _AddToSchedulePageState extends State<AddToSchedulePage> {
+  var event_description_channged;
+  var event_name_changed;
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Scaffold(
+    return Scaffold(
+      appBar:AppBar(
         backgroundColor: newcolor,
-        body: Container(
-          color: newcolor,
-          child: Center(
-            child: FloatingActionButton(
-              elevation: 0,
-
-              backgroundColor: Colors.white,
-              onPressed: (){
-                Navigator.pop(context);
-
-              },
-            ),
-          ),
+        iconTheme:IconThemeData(
+            color: Colors.black
         ),
       ),
-    );;
+      backgroundColor: newcolor,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(elevation: 0,
+                color: newcolor,
+                child: TextField(
+
+
+
+
+
+                    style: TextStyle(
+
+
+                        color: Colors.brown,fontSize: 30
+
+                    ),
+
+
+
+                    cursorColor: Colors.brown,
+                    cursorHeight: 35,
+
+                    decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:  BorderSide(color: Colors.black26,width: 4),
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:  BorderSide(color: Colors.black26,width: 3),
+                          borderRadius: BorderRadius.circular(25.0),
+
+                        ),
+                        labelText: "Name of the event",
+
+                        helperText: 'Keep it short, this is just a beta.',
+                        hintStyle: TextStyle(color: Colors.black26),
+                        labelStyle: TextStyle(
+                            color: Colors.brown,fontSize: 30
+                        ),
+                        hoverColor: Colors.brown,
+                        fillColor: newcolor,
+                        focusColor: Colors.white
+                    ),
+                    onChanged: ( NameOfEvent) {
+                      print("The value entered is : $NameOfEvent");
+                      event_name_changed="$NameOfEvent";
+
+
+
+                    }
+                ),
+              ),
+            ),
+
+
+
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(elevation: 0,
+                color: newcolor,
+                child: TextField(
+
+
+
+
+
+                    style: TextStyle(
+
+
+                        color: Colors.brown,fontSize: 30
+
+                    ),
+
+
+
+                    cursorColor: Colors.brown,
+                    cursorHeight: 35,
+
+                    decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:  BorderSide(color: Colors.black26,width: 4),
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:  BorderSide(color: Colors.black26,width: 3),
+                          borderRadius: BorderRadius.circular(25.0),
+
+                        ),
+                        labelText: "Description",
+
+                        helperText: 'Keep it short, this is just a beta.',
+                        hintStyle: TextStyle(color: Colors.black26),
+                        labelStyle: TextStyle(
+                            color: Colors.brown,fontSize: 30
+                        ),
+                        hoverColor: Colors.brown,
+                        fillColor: newcolor,
+                        focusColor: Colors.white
+                    ),
+                    onChanged: (DescriptionOfEvent) {
+                      print("The value entered is : $DescriptionOfEvent");
+                      event_description_channged="$DescriptionOfEvent";
+
+
+                    }
+                ),
+              ),
+            ),
+            FloatingActionButton(
+                backgroundColor: Colors.brown,onPressed: (){
+              event_description=event_description_channged;
+              event_name=event_name_changed;
+
+
+              Events.add(Card(
+                child: ListTile(
+                  leading: Icon(FontAwesomeIcons.star,color: Colors.purple,),
+                  title: Text(event_name),
+                  subtitle: Text(event_description),
+                ),
+              ));
+            }),
+          ],
+        ),
+      ),
+    );
   }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////ADDPROJECTPAGE
@@ -336,24 +588,149 @@ class AddProjectPage extends StatefulWidget {
 }
 
 class _AddProjectPageState extends State<AddProjectPage> {
+  var event_description_channged;
+  var event_name_changed;
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Scaffold(
+    return Scaffold(
+      appBar:AppBar(
         backgroundColor: newcolor,
-        body: Container(
-          color: newcolor,
-          child: Center(
-            child: FloatingActionButton(
-              tooltip: "Add Project",
-              elevation: 0,
+        iconTheme:IconThemeData(
+            color: Colors.black
+        ),
+      ),
+      backgroundColor: newcolor,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(elevation: 0,
+                color: newcolor,
+                child: TextField(
 
-              backgroundColor: Colors.white,
-              onPressed: (){
-                Navigator.pop(context);
-              },
+
+
+
+
+                    style: TextStyle(
+
+
+                        color: Colors.brown,fontSize: 30
+
+                    ),
+
+
+
+                    cursorColor: Colors.brown,
+                    cursorHeight: 35,
+
+                    decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:  BorderSide(color: Colors.black26,width: 4),
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:  BorderSide(color: Colors.black26,width: 3),
+                          borderRadius: BorderRadius.circular(25.0),
+
+                        ),
+                        labelText: "Name of the event",
+
+                        helperText: 'Keep it short, this is just a beta.',
+                        hintStyle: TextStyle(color: Colors.black26),
+                        labelStyle: TextStyle(
+                            color: Colors.brown,fontSize: 30
+                        ),
+                        hoverColor: Colors.brown,
+                        fillColor: newcolor,
+                        focusColor: Colors.white
+                    ),
+                    onChanged: ( NameOfEvent) {
+                      print("The value entered is : $NameOfEvent");
+                      event_name_changed="$NameOfEvent";
+
+
+
+                    }
+                ),
+              ),
             ),
-          ),
+
+
+
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(elevation: 0,
+                color: newcolor,
+                child: TextField(
+
+
+
+
+
+                    style: TextStyle(
+
+
+                        color: Colors.brown,fontSize: 30
+
+                    ),
+
+
+
+                    cursorColor: Colors.brown,
+                    cursorHeight: 35,
+
+                    decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:  BorderSide(color: Colors.black26,width: 4),
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:  BorderSide(color: Colors.black26,width: 3),
+                          borderRadius: BorderRadius.circular(25.0),
+
+                        ),
+                        labelText: "Description",
+
+                        helperText: 'Keep it short, this is just a beta.',
+                        hintStyle: TextStyle(color: Colors.black26),
+                        labelStyle: TextStyle(
+                            color: Colors.brown,fontSize: 30
+                        ),
+                        hoverColor: Colors.brown,
+                        fillColor: newcolor,
+                        focusColor: Colors.white
+                    ),
+                    onChanged: (DescriptionOfEvent) {
+                      print("The value entered is : $DescriptionOfEvent");
+                      event_description_channged="$DescriptionOfEvent";
+
+
+                    }
+                ),
+              ),
+            ),
+            FloatingActionButton(
+                backgroundColor: Colors.brown,onPressed: (){
+              event_description=event_description_channged;
+              event_name=event_name_changed;
+
+
+              Events.add(Card(
+                child: ListTile(
+                  leading: Icon(FontAwesomeIcons.star,color: Colors.purple,),
+                  title: Text(event_name),
+                  subtitle: Text(event_description),
+                ),
+              ));
+            }),
+          ],
         ),
       ),
     );
@@ -376,12 +753,9 @@ class _EventsPageState extends State<EventsPage> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-
-
-      child: Expanded(
-        child: Container(
+      child: Container(
           alignment: Alignment.center,
-          color:Colors.transparent,
+          color:newcolor,
 
 
 
@@ -417,7 +791,6 @@ class _EventsPageState extends State<EventsPage> {
 
 
         ),
-      ),
     );
   }
 }
@@ -479,8 +852,8 @@ mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
                         ),
                         labelText: "Name of the event",
-                        hintText:"TELL US!!!!!",
-                        helperText: 'Keep it short, this is just a demo.',
+
+                        helperText: 'Keep it short, this is just a beta.',
                         hintStyle: TextStyle(color: Colors.black26),
                         labelStyle: TextStyle(
                             color: Colors.brown,fontSize: 30
@@ -492,6 +865,7 @@ mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     onChanged: ( NameOfEvent) {
                       print("The value entered is : $NameOfEvent");
                       event_name_changed="$NameOfEvent";
+
 
 
                     }
@@ -535,9 +909,9 @@ mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         borderRadius: BorderRadius.circular(25.0),
 
                       ),
-                    labelText: "Name of the event",
-                    hintText:"TELL US!!!!!",
-                      helperText: 'Keep it short, this is just a demo.',
+                    labelText: "Description",
+
+                      helperText: 'Keep it short, this is just a beta.',
                     hintStyle: TextStyle(color: Colors.black26),
                     labelStyle: TextStyle(
                         color: Colors.brown,fontSize: 30
@@ -555,17 +929,21 @@ mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 ),
               ),
             ),
-            FloatingActionButton(onPressed: (){
+            FloatingActionButton(
+                backgroundColor: Colors.brown,onPressed: (){
               event_description=event_description_channged;
               event_name=event_name_changed;
-              Navigator.push(context, MaterialPageRoute(builder:(context)=>EventsPage()));
+
+
               Events.add(Card(
                 child: ListTile(
+                  leading: Icon(FontAwesomeIcons.star,color: Colors.purple,),
                   title: Text(event_name),
+                  subtitle: Text(event_description),
                 ),
               ));
-            })
-          ],
+            }),
+         ],
         ),
       ),
     );
